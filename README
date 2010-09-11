@@ -1,0 +1,28 @@
+ParentResource
+==============
+in the controller of recursive resource, auto load parent resource
+
+Example
+=======
+
+#-- config/routes.rb
+resources :members
+resources :projects do
+  resources :members
+end
+
+#-- app/controller/members_controller.rb
+# auto load @project when like /projects/1/members
+# not load when /members
+class MembersController < ActionController::Base
+  parent_resource :project
+end
+
+#-- app/view/members/new.html.erb
+# you can support both /projects/1/members/new and /members/new with single file
+<% form_for([@project, @member]) do |f| %>
+   ...
+<% end %>
+
+
+Copyright (c) 2010 masarakki <masaki@hisme.net>, released under the MIT license
