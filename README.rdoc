@@ -1,15 +1,26 @@
-= auto_mock
-you dont have to write 'def mock_xxx(stubs={})...' any longer.
+= parent_resource
+in the controller of recursive resource, auto load parent resource
 
-== Install
-First, you must setup rspec by 
-rails generate rspec:install
+== example
 
-Then, 
-rails generate auto_mock
+=== config/routes.rb
+resources :members
+resources :projects do
+  resources :members
+end
 
-== Deinstall
-delete 'include AutoMock::AutoMockHelper' line in your spec/spec_helper.rb
+=== app/controller/members_controller.rb
+# auto load @project when like /projects/1/members
+# not load when /members
+class MembersController < ActionController::Base
+  parent_resource :project
+end
+
+=== app/view/members/new.html.erb
+# you can support both /projects/1/members/new and /members/new with single file
+<% form_for([@project, @member]) do |f| %>
+   ...
+<% end %>
 
 == Contributing to auto_mock
  
