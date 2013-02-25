@@ -1,6 +1,6 @@
 source :rubygems
 
-gem "rails"
+gem "rails", '~> 3.2.0'
 
 group :development, :test do
   gem "rspec"
