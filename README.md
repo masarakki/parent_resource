@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/masarakki/parent_resource.svg?branch=master)](https://travis-ci.org/masarakki/parent_resource)
+[![Dependency Status](https://gemnasium.com/masarakki/parent_resource.svg)](https://gemnasium.com/masarakki/parent_resource)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/masarakki/parent_resource/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/masarakki/parent_resource/?branch=master)
+[![Coverage Status](https://coveralls.io/repos/masarakki/parent_resource/badge.png?branch=master)](https://coveralls.io/r/masarakki/parent_resource?branch=master)
 # parent_resource
 in the controller of recursive resource, auto load parent resource
 
