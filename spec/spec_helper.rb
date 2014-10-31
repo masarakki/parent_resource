@@ -1,21 +1,12 @@
-require 'rubygems'
-require 'spork'
+# Configure Rails Environment
+ENV['RAILS_ENV'] = 'test'
+require File.expand_path('../dummy/config/environment.rb',  __FILE__)
+ActiveRecord::Migrator.migrations_paths = [File.expand_path('../dummy/db/migrate', __FILE__)]
+require 'rspec/rails'
+require 'coveralls'
+Coveralls.wear!
 
-Spork.prefork do
-  $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-  $LOAD_PATH.unshift(File.dirname(__FILE__))
-  require 'rspec'
-  require 'action_controller'
-  require 'parent_resource'
+# Load support files
+Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 
-  Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
-
-  RSpec.configure do |config|
-
-  end
-end
-
-Spork.each_run do
-end
-
-
+ActiveRecord::Migration.maintain_test_schema!
