@@ -1,3 +1,4 @@
+require 'parent_resource/version'
 require 'active_support/concern'
 
 module ParentResource
@@ -11,6 +12,7 @@ module ParentResource
     end
 
     private
+
     def create_parent_resource(key)
       model = key.to_s.classify.constantize
       key_name = "#{key}_id".to_sym
@@ -18,8 +20,7 @@ module ParentResource
 
       define_method(key) do
         unless instance_variable_defined?(val)
-          _params = params.symbolize_keys
-          res = _params.has_key?(key_name) ? model.find(_params[key_name]) : nil
+          res = params.key?(key_name) ? model.find(params[key_name]) : nil
           instance_variable_set(val, res)
         end
         instance_variable_get(val)

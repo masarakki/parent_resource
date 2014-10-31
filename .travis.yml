@@ -1,4 +1,9 @@
 language: ruby
 rvm:
   - 2.0.0
-  - 2.1.2
+  - 2.1.4
+before_script:
+  - bundle exec rake db:migrate
+script:
+  - bundle exec rake spec
+  - bundle exec rubocop
